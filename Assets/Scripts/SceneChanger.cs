@@ -15,6 +15,7 @@ public class SceneChanger : MonoBehaviour
     public void StartGame()
     {
         audioManager.Play("Game");
+        audioManager.PlaySoundEffect("Walk");
         SceneManager.LoadScene("Game");
     }
 
@@ -25,6 +26,7 @@ public class SceneChanger : MonoBehaviour
     public void MainMenu()
     {
         audioManager.Play("Main Menu");
+        audioManager.StopSoundEffect();
         SceneManager.LoadScene("MainMenu");
     }
 

@@ -853,7 +853,40 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: da638549f518a724f8b490e71bc73c23, type: 3}
     loop: 1
     audioSource: {fileID: 0}
+  - name: Game
+    audioClip: {fileID: 8300000, guid: 4bbfb1334f00aba40909f59a00684641, type: 3}
+    loop: 1
+    audioSource: {fileID: 0}
+  - name: Choice
+    audioClip: {fileID: 8300000, guid: 6c4c01a1afd3f414d89d361529dd1942, type: 3}
+    loop: 1
+    audioSource: {fileID: 0}
+  - name: Grenade
+    audioClip: {fileID: 8300000, guid: 0d838e1054d92cd4f8c4c905446d1785, type: 3}
+    loop: 0
+    audioSource: {fileID: 0}
+  - name: Walk
+    audioClip: {fileID: 8300000, guid: 5574f478dfe6ed649a274326f5a61759, type: 3}
+    loop: 1
+    audioSource: {fileID: 0}
+  - name: Run
+    audioClip: {fileID: 8300000, guid: 3599e1982f0c168479d525791b99b147, type: 3}
+    loop: 1
+    audioSource: {fileID: 0}
+  - name: Swords
+    audioClip: {fileID: 8300000, guid: d524c64bd53d779448d6e7bbbcc4046b, type: 3}
+    loop: 0
+    audioSource: {fileID: 0}
+  - name: Hero Celebrating
+    audioClip: {fileID: 8300000, guid: fc75154f55fcb754e8dd98cb210abe5b, type: 3}
+    loop: 1
+    audioSource: {fileID: 0}
+  - name: Giant Celebrating
+    audioClip: {fileID: 8300000, guid: 5887c6393d8655d4bbc5f2ec53d0e736, type: 3}
+    loop: 1
+    audioSource: {fileID: 0}
   currentlyPlaying: 
+  currentlyPlayingSoundEffect: 
 --- !u!4 &1047585417
 Transform:
   m_ObjectHideFlags: 0

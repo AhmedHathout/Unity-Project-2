@@ -10,6 +10,8 @@ public class AudioManager : MonoBehaviour
 
     [HideInInspector]
     public string currentlyPlaying = "";
+    [HideInInspector]
+    public string currentlyPlayingSoundEffect = "";
 
     private volatile bool isMuted = false;
 
@@ -44,7 +46,6 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(isMuted);
         if (isMuted)
         {
             AudioListener.pause = true;
@@ -95,6 +96,38 @@ public class AudioManager : MonoBehaviour
         {
             soundTrack.Stop();
             currentlyPlaying = "";
+        }
+        else
+        {
+            Debug.LogWarning("Could not find the currently playing track: " + currentlyPlaying);
+        }
+    }
+
+    public void StopSoundEffect(String name)
+    {
+        SoundTrack soundTrack = Array.Find(soundTracks, s => s.name == name);
+        if (soundTrack != null)
+        {
+            soundTrack.Stop();
+        }
+    }
+
+    public void StopSoundEffect()
+    {
+        StopSoundEffect(currentlyPlayingSoundEffect);
+    }
+
+    public void PlaySoundEffect(string name)
+    {
+        if (currentlyPlayingSoundEffect == name)
+            return;
+        StopSoundEffect(currentlyPlayingSoundEffect);
+        currentlyPlayingSoundEffect = "";
+        SoundTrack soundTrack = Array.Find(soundTracks, s => s.name == name);
+        if (soundTrack != null)
+        {
+            soundTrack.Play();
+            currentlyPlayingSoundEffect = name;
         }
     }
 

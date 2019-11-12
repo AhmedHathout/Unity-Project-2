@@ -6,10 +6,12 @@ public class lastGiant : MonoBehaviour
 {
     public Animator anim;
     public bool appear;
+    private AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
         appear = false;
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -27,11 +29,20 @@ public class lastGiant : MonoBehaviour
         {
             anim.SetBool("isRunning", false);
             anim.SetBool("isAttack", true);
+            //audioManager.PlaySoundEffect("Swords");
+            //StartCoroutine(WaitBeforePlayingSoundEffect(1, "Swords"));
+            StartCoroutine(WaitBeforePlayingSoundEffect(2, "Giant Celebrating"));
         }
         else if (FindObjectOfType<FootManManager>().transform.position.z >= 58 && FindObjectOfType<FootManManager>().transform.position.x == 12.65f)
         {
             anim.SetBool("isRunning", true);
             transform.Translate(0, 0, 0.1f);
         }
+    }
+
+    public IEnumerator WaitBeforePlayingSoundEffect(int seconds, string soundEffectName)
+    {
+        yield return new WaitForSeconds(seconds);
+        audioManager.PlaySoundEffect(soundEffectName);
     }
 }
