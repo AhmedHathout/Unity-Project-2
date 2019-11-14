@@ -21,7 +21,7 @@ public class FootManManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(twoGiantsDead && FindObjectOfType<Manager>().isAttacking && transform.position.z < 61)
+        if (twoGiantsDead && FindObjectOfType<Manager>().isAttacking && transform.position.z < 61)
         {
             anim.SetBool("isRunning", true);
             audioManager.Play("Game");
@@ -29,11 +29,12 @@ public class FootManManager : MonoBehaviour
             FindObjectOfType<Manager>().meleeButton.SetActive(false);
             transform.Translate(0, 0, .09f);
         }
-        if(twoGiantsDead && FindObjectOfType<Manager>().isAttacking && transform.position.z >= 61)
+        if (twoGiantsDead && FindObjectOfType<Manager>().isAttacking && transform.position.z >= 61)
         {
             anim.SetBool("isRunning", false);
             anim.SetTrigger("isAttack");
-            audioManager.PlaySoundEffect("Swords");
+            StartCoroutine("attackSound");
+            //audioManager.PlaySoundEffect("Swords");
             FindObjectOfType<Manager>().isAttacking = false;
             anim.SetBool("isWinning", true);
             StartCoroutine(WaitBeforeCelebrating(2.5));
@@ -68,12 +69,11 @@ public class FootManManager : MonoBehaviour
         {
             StartCoroutine("die");
         }
-        if(transform.position.x== 6.65f && transform.position.z < 35)
+        if (transform.position.x == 6.65f && transform.position.z < 35)
         {
             anim.SetBool("isRunning", true);
             audioManager.Play("Game");
             transform.Translate(0, 0, .09f);
-
             audioManager.PlaySoundEffect("Run");
         }
         else if (FindObjectOfType<Manager>().isGrenade)
@@ -84,14 +84,14 @@ public class FootManManager : MonoBehaviour
         {
             anim.SetBool("isRunning", true);
             audioManager.Play("Game");
-            audioManager.PlaySoundEffect("Run");
             transform.Translate(0, 0, .09f);
+            audioManager.PlaySoundEffect("Run1");
         }
-        else if(transform.position.x == 12.65f && transform.position.z >= 58)
+        else if (transform.position.x == 12.65f && transform.position.z >= 58)
         {
             anim.SetBool("isRunning", false);
         }
-        else if(transform.position.x == 6.65f && transform.position.z >= 35 && !FindObjectOfType<Manager>().isGrenade)
+        else if (transform.position.x == 6.65f && transform.position.z >= 35 && !FindObjectOfType<Manager>().isGrenade)
         {
             anim.SetBool("isRunning", false);
             audioManager.Play("Choice");
@@ -110,10 +110,12 @@ public class FootManManager : MonoBehaviour
             audioManager.PlaySoundEffect("Run");
 
         }
-        else if(FindObjectOfType<Manager>().isAttacking && transform.position.x == -5.35f && transform.position.z >= 34){
+        else if (FindObjectOfType<Manager>().isAttacking && transform.position.x == -5.35f && transform.position.z >= 34)
+        {
             anim.SetBool("isRunning", false);
             anim.SetTrigger("isAttack");
-            audioManager.PlaySoundEffect("Swords");
+            StartCoroutine("attackSound");
+            //audioManager.PlaySoundEffect("Swords");
             anim.SetBool("isWinning", true);
             FindObjectOfType<Manager>().isAttacking = false;
             StartCoroutine(WaitBeforeCelebrating(2.5));
@@ -130,7 +132,7 @@ public class FootManManager : MonoBehaviour
 
             transform.Translate(0, 0, .05f);
         }
-        else if(transform.position.x == -5.35f && transform.position.z >= 26)
+        else if (transform.position.x == -5.35f && transform.position.z >= 26)
         {
             anim.SetBool("isIdle", true);
             if (!perfomedFirstMeleeAttack)
@@ -152,11 +154,12 @@ public class FootManManager : MonoBehaviour
             }
             audioManager.StopSoundEffect("Walk");
         }
-        else if(FindObjectOfType<Manager>().isAttacking && transform.position.z >= 13.91f)
+        else if (FindObjectOfType<Manager>().isAttacking && transform.position.z >= 13.91f)
         {
             anim.SetBool("isRunning", false);
             anim.SetTrigger("isAttack");
-            audioManager.PlaySoundEffect("Swords");
+            StartCoroutine("attackSound");
+            //audioManager.PlaySoundEffect("Swords");
             FindObjectOfType<Manager>().isAttacking = false;
             StartCoroutine("Hide");
 
@@ -180,11 +183,17 @@ public class FootManManager : MonoBehaviour
         yield return (new WaitForSeconds(1));
         anim.SetBool("isHit", true);
     }
+    IEnumerator attackSound()
+    {
+        yield return (new WaitForSeconds(1.2f));
+        audioManager.PlaySoundEffect("Swords");
+    }
 
     IEnumerator WaitBeforeCelebrating(double seconds)
     {
-        yield return new WaitForSeconds((float) seconds);
+        yield return new WaitForSeconds((float)seconds);
         audioManager.PlaySoundEffect("Hero Celebrating");
     }
 
 }
+
