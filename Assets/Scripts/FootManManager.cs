@@ -187,9 +187,4 @@ public class FootManManager : MonoBehaviour
         audioManager.PlaySoundEffect("Hero Celebrating");
     }
 
-    IEnumerator WaitBeforeSwordsSoundEffect(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        audioManager.PlaySoundEffect("swords");
-    }
 }

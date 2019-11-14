@@ -109,7 +109,6 @@ public class AudioManager : MonoBehaviour
         if (soundTrack != null)
         {
             soundTrack.Stop();
-            currentlyPlayingSoundEffect = "";
         }
     }
 
